@@ -6,7 +6,7 @@ namespace doodle {
 	bool DoodleJump::initialize() {
 		ilInit();
 		
-		bool loaded = loadObj("../bin/yoda.obj", "../bin/yoda.dds", "../bin/yoda.dds", yoda);
+		bool loaded = loadObj("../bin/ball.obj", "../bin/test.jpg", "../bin/yoda.dds", yoda);
 		if(!loaded) {
 			cout << "Error loading object" << endl;
 			return false;
@@ -14,10 +14,12 @@ namespace doodle {
 		
 		initPhysics();
 		
-		if(!loadShaders())
+		if(!loadShaders()){
+			cout << "Error loading shader" << endl;
 			return false;
+		}
 		
-		view = glm::lookAt( glm::vec3(0.0, 10.0, -20.0), //Eye Position
+		view = glm::lookAt( glm::vec3(0.0, 5.0, 10.0000001), //Eye Position
                         	glm::vec3(0.0, 0.0, 0.0), //Focus point
                         	glm::vec3(0.0, 1.0, 0.0)); //Positive Y is up
                         	
@@ -158,7 +160,7 @@ namespace doodle {
 		    modelView = view * obj.modelMatrix;
 		    glUniformMatrix4fv(loc_mvpmat, 1, GL_FALSE, glm::value_ptr(mvp));
 		    glUniformMatrix4fv(loc_modelviewmat, 1, GL_FALSE, glm::value_ptr(modelView));
-		    glBindBuffer(GL_ARRAY_BUFFER, obj.mesh[i].vbo_geometry);
+		    glBindBuffer(GL_ARRAY_BUFFER, obj.mesh[0].vbo_geometry);
 		    glVertexAttribPointer(loc_position, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 		    glVertexAttribPointer(loc_normal, 3, GL_FLOAT, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex,normal));
 		    glVertexAttribPointer(loc_uv, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,uv));
@@ -167,7 +169,7 @@ namespace doodle {
 		        glBindTexture(GL_TEXTURE_2D, obj.texture);
 		    //else
 		       // glBindTexture(GL_TEXTURE_2D, obj._texture);*/
-		    glDrawArrays(GL_TRIANGLES, 0, obj.mesh[i].numFaces * 3);
+		    glDrawArrays(GL_TRIANGLES, 0, obj.mesh[0].numFaces * 3);
 		}
 	}
 	
@@ -263,7 +265,6 @@ namespace doodle {
 		    glBindBuffer(GL_ARRAY_BUFFER, obj.mesh[i].vbo_geometry);
 		    glBufferData(GL_ARRAY_BUFFER, obj.mesh[i].numFaces * 3 * sizeof(Vertex), &(obj.mesh[i].geometry[0]), GL_STATIC_DRAW);
 		}
-
 		return true;
 	}   
 
