@@ -4,12 +4,20 @@ namespace doodle {
 	DoodleJump::~DoodleJump() {}
 
 	bool DoodleJump::initialize() {
+		ilInit();
+		
+		bool loaded = loadObj("../bin/yoda.obj", "../bin/yoda.dds", "../bin/yoda.dds", yoda);
+		if(!loaded) {
+			cout << "Error loading object" << endl;
+			return false;
+		}
+		
 		initPhysics();
-
+		
 		if(!loadShaders())
 			return false;
 		
-		view = glm::lookAt( glm::vec3(0.0, 0.0, -3.0), //Eye Position
+		view = glm::lookAt( glm::vec3(0.0, 10.0, -20.0), //Eye Position
                         	glm::vec3(0.0, 0.0, 0.0), //Focus point
                         	glm::vec3(0.0, 1.0, 0.0)); //Positive Y is up
                         	
@@ -102,11 +110,13 @@ namespace doodle {
 	void DoodleJump::update() {
 		float dt = getDT();
         dynamicsWorld->stepSimulation(dt,10);
-   
+        
+   		//updateObj(yoda);
+   		
 		glutPostRedisplay();
 	}
 	
-	void DoodleJump::update(Object& obj){
+	void DoodleJump::updateObj(Object& obj){
 		//initiate object transform
 		btTransform trans;
 		btScalar buffer[16];
@@ -130,7 +140,7 @@ namespace doodle {
     	glEnableVertexAttribArray(loc_uv);
     	
     	// Render objects
-    	
+    	renderObj(yoda);
     	
     	//clean up
 		glDisableVertexAttribArray(loc_position);
@@ -151,10 +161,10 @@ namespace doodle {
 		    glVertexAttribPointer(loc_normal, 3, GL_FLOAT, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex,normal));
 		    glVertexAttribPointer(loc_uv, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,uv));
 		    glActiveTexture(GL_TEXTURE0);
-		    /*if(textureToggle == 0)
+		    //if(textureToggle == 0)
 		        glBindTexture(GL_TEXTURE_2D, obj.texture);
-		    else
-		        glBindTexture(GL_TEXTURE_2D, obj._texture);*/
+		    //else
+		       // glBindTexture(GL_TEXTURE_2D, obj._texture);*/
 		    glDrawArrays(GL_TRIANGLES, 0, obj.mesh[i].numFaces * 3);
 		}
 	}
@@ -196,7 +206,7 @@ namespace doodle {
 		if(!success) {
 		    cout << "Error: Unable to load texture " << filePathTex << endl;
 		    return false;
-		}/*
+		}
 		else {
 		    success = ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE);
 		    if(!success) {
@@ -210,7 +220,7 @@ namespace doodle {
 		    glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_BPP), ilGetInteger(IL_IMAGE_WIDTH),
 		        ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
 		        ilGetData());
-		}*/
+		}
 
 		// Get mesh
 		obj.numMeshes = scene->mNumMeshes;
@@ -272,6 +282,14 @@ namespace doodle {
 		dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 
 		dynamicsWorld->setGravity(btVector3(0,-9.81,0));
+		
+		//YODA
+		btCollisionShape* yodaShape = new btBoxShape(btVector3(.3,.3,.3));
+		btDefaultMotionState* yodaMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,0,0)));
+		btRigidBody::btRigidBodyConstructionInfo yodaRigidBodyCI(0, yodaMotionState, yodaShape, btVector3(0,0,0));
+		yoda.rigidBody = new btRigidBody(yodaRigidBodyCI);
+		yoda.rigidBody->setActivationState(DISABLE_DEACTIVATION);
+		dynamicsWorld->addRigidBody(yoda.rigidBody);	
 	}
 	
 	char* DoodleJump::loadFromString(const char* fileName){

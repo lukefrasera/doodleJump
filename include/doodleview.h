@@ -55,7 +55,7 @@ public:
 
   virtual bool initialize();
   virtual void update();
-  virtual void update(Object&);
+  virtual void updateObj(Object&);
   virtual void render();
   virtual void renderObj(Object&);
   virtual void resize(int w, int h);
@@ -83,8 +83,7 @@ private:
   
   // Geometry Variables
   GLuint program;
-  GLuint yvbo, bvbo;
-  int geometrySize;
+  Object yoda;
   
   //transform matrices
 	glm::mat4 model;//obj->world each object should have its own model matrix
