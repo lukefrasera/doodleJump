@@ -21,20 +21,20 @@ void abstractScene::absresize(int w, int h) {
 
 void abstractScene::glutKeyPressEvent(unsigned char key, int x, int y) {
 	printf("glutKeyPressEvent\n");
-	mScene->keyPressEvent();
+	mScene->keyPressEvent(key, x, y);
 }
 
 void abstractScene::glutKeyReleaseEvent(unsigned char key, int x, int y) {
   printf("glutKeyReleaseEvent\n");
-	mScene->keyReleaseEvent();
+	mScene->keyReleaseEvent(key, x, y);
 }
 
 void abstractScene::glutMouseMoveEvent(int x, int y) {
   printf("glutMouseMoveEvent\n");
-	mScene->mouseMoveEvent();
+	mScene->mouseMoveEvent(x, y);
 }
 
 void abstractScene::glutMouseClickEvent(int button, int state, int x, int y) {
   printf("glutMouseClickEvent\n");
-	mScene->mouseClickEvent();
+	mScene->mouseClickEvent(button, state, x, y);
 }

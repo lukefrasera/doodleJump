@@ -27,11 +27,11 @@ public:
 	int w,h;
 protected:
 
-	virtual void keyPressEvent() = 0;
-	virtual void keyReleaseEvent() = 0;
-	virtual void mouseClickEvent() = 0;
+	virtual void keyPressEvent(unsigned char, int, int) = 0;
+	virtual void keyReleaseEvent(unsigned char, int, int) = 0;
+	virtual void mouseClickEvent(int button, int state, int x, int y) = 0;
 	virtual void mouseReleaseEvent() = 0;
-	virtual void mouseMoveEvent() = 0;
+	virtual void mouseMoveEvent(int x, int y) = 0;
 	
 	// Private Data Members
 private:
