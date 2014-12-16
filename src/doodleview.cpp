@@ -1,5 +1,5 @@
 #include "doodleview.h"
-#include <btBulletDynamicsCommon.h>	// Bullet Physics
+#include "btBulletDynamicsCommon.h"	// Bullet Physics
 
 namespace doodle {
 	DoodleJump::DoodleJump() {}
@@ -15,7 +15,7 @@ namespace doodle {
 	void DoodleJump::updateGL() {}
 	void DoodleJump::drawGL() {}
 
-	void DoodleJump::keyPressEvent(unsigned char key, int, x, int y) {}
+	void DoodleJump::keyPressEvent(unsigned char key, int x, int y) {}
 	void DoodleJump::keyReleaseEvent(unsigned char key, int x, int y) {}
 	void DoodleJump::mouseClickEvent(int button, int state, int x, int y) {}
 	void DoodleJump::mouseReleaseEvent() {}
