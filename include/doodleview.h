@@ -20,6 +20,7 @@ public:
   virtual void resizeGL(int w , int h);
   virtual void updateGL();
   virtual void drawGL();
+  void initPhysics();
 
 protected:
   virtual void keyPressEvent();
