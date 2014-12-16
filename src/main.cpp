@@ -1,6 +1,7 @@
 #include "abstractscene.h"
 #include "baseglscene.h"
 #include "glapplication.h"
+#include "doodleview.h"
 #include <iostream>
 
 abstractScene * mScene;

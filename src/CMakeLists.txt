@@ -1,5 +1,6 @@
 ADD_EXECUTABLE( doodlejump
   main.cpp
+  doodleview.cpp
   ${gl_SOURCE}
   ${GLEW_LIBRARIES}
 )

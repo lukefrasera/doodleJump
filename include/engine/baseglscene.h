@@ -1,6 +1,6 @@
 #include "abstractscene.h"
 
-##ifndef BASICGLSCENE
+#ifndef BASICGLSCENE
 #define BASICGLSCENE
 struct keyEvent {
 	char key;

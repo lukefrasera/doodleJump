@@ -8,6 +8,7 @@ find_package(GLUT REQUIRED)
 
 INCLUDE_DIRECTORIES(
   include/engine
+  include/
   ${GLEW_INCLUDE_DIRS}
   ${GLUT_INCLUDE_DIRS}
 )
