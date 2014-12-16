@@ -1,5 +1,7 @@
 #include "abstractscene.h"
 
+##ifndef BASICGLSCENE
+#define BASICGLSCENE
 struct keyEvent {
 	char key;
 	int x,y;
@@ -37,3 +39,4 @@ private:
 	// ARRAY OF OBJECTS IN SCENE
 
 };
+#endif
