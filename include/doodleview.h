@@ -23,15 +23,15 @@ public:
   void initPhysics();
 
 protected:
-  virtual void keyPressEvent();
-  virtual void keyReleaseEvent();
-  virtual void mouseClickEvent();
+  virtual void keyPressEvent(unsigned char, int, int);
+  virtual void keyReleaseEvent(unsigned char, int, int);
+  virtual void mouseClickEvent(int button, int state, int x, int y);
   virtual void mouseReleaseEvent();
-  virtual void mouseMoveEvent();
+  virtual void mouseMoveEvent(int x, int y);
 
 private:
   // Add openGL Variables to Scene
-
+  
   // ARRAY OF OBJECTS IN SCENE
 };
 }
