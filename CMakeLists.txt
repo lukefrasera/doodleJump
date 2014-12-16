@@ -7,6 +7,7 @@ find_package(GLEW REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(Assimp REQUIRED)
+find_package(DevIL REQUIRED)
 
 INCLUDE_DIRECTORIES(
   include/engine
@@ -17,6 +18,7 @@ INCLUDE_DIRECTORIES(
   ${GLUT_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIR}
   ${ASSIMP_INCLUDE_DIRS}
+  ${DEVIL_INCLUDE_DIRS}
 )
 SET(gl_SOURCE
   ${PROJECT_SOURCE_DIR}/src/engine/abstractscene.cpp
