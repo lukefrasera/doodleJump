@@ -43,6 +43,11 @@ protected:
 
 private:
   // Add openGL Variables to Scene
+  
+  // Geometry Variables
+  GLuint vbo_geometry;
+  
+  
   //Bullet Physics Globals
 	btBroadphaseInterface* broadphase;
 	btDefaultCollisionConfiguration* collisionConfiguration;

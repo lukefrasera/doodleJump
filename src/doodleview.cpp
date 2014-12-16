@@ -3,13 +3,28 @@ namespace doodle {
 	DoodleJump::DoodleJump() {}
 	DoodleJump::~DoodleJump() {}
 
-	bool DoodleJump::initialize() {}
-	void DoodleJump::update() {}
-	void DoodleJump::render(){}
+	bool DoodleJump::initialize() {
+		
+    	projection = glm::perspective( 45.0f, float(w)/float(h), 0.01f, 100.0f);
+	}
+	
+	void DoodleJump::update() {
+		
+		glutPostRedisplay();
+	}
+	
+	void DoodleJump::render() {
+		glClearColor(0.0, 0.0, 0.0, 1.0);
+    	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    	
+    	
+    	glutSwapBuffers();
+	}
+	
 	void DoodleJump::resize(int w, int h) {
 	    windowWidth = w;
    		windowHeight = h;
-    	glViewport( 0, 0, windowWidth, windowHeight);
+    	glViewport(0, 0, windowWidth, windowHeight);
     	projection = glm::perspective(45.0f, float(windowWidth)/float(windowHeight), 0.01f, 100.0f);
     }
 
