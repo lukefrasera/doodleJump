@@ -23,5 +23,8 @@ SET(gl_SOURCE
   ${PROJECT_SOURCE_DIR}/src/engine/baseglscene.cpp
   ${PROJECT_SOURCE_DIR}/src/engine/glapplication.cpp
 )
+set(CMAKE_CXX_FLAGS "-g")
+set(CMAKE_CXX_FLAGS "-Wall")
+set(CMAKE_CXX_FLAGS "-std=c++0x")
 
 ADD_SUBDIRECTORY(src)

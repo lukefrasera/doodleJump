@@ -4,6 +4,10 @@
 #include "abstractscene.h"
 #include <GL/glew.h> 
 #include <GL/glut.h>
+#include <chrono>
+#include <time.h>
+#include <fstream>
+#include <iostream>
 #include "btBulletCollisionCommon.h"
 #include "btBulletDynamicsCommon.h"
 #define GLM_FORCE_RADIANS
@@ -14,6 +18,9 @@
 #include "assimp/Importer.hpp"
 #include "assimp/postprocess.h"
 #include "assimp/scene.h"
+#include "IL/il.h"
+
+using namespace std;
 
 namespace doodle {
 
@@ -23,10 +30,40 @@ public:
   ~DoodleJump();
 
 public:
+	struct Vertex{
+		GLfloat position[3];
+		GLfloat uv[2];
+		GLfloat normal[3];
+	};
+  
+	struct Mesh{
+		  Vertex* geometry;
+		  unsigned int numFaces;
+		  unsigned int numVertices;
+		  GLuint vbo_geometry;
+		  bool hasNormals;
+	};
+
+	struct Object{
+		  Mesh* mesh;
+		  glm::mat4 modelMatrix;
+		  unsigned int numMeshes;
+		  btRigidBody *rigidBody;
+		  GLuint texture;
+		  GLuint altTexture;
+	};
+
   virtual bool initialize();
   virtual void update();
+  virtual void update(Object&);
   virtual void render();
+  virtual void renderObj(Object&);
   virtual void resize(int w, int h);
+  virtual bool loadShaders();
+  virtual bool loadObj(const char* objpath, const char* text,const char* alttext, Object&);
+	virtual char* loadFromString(const char*);
+	virtual float getDT();
+	virtual void cleanUp();
 
   virtual void initializeGL();
   virtual void resizeGL(int w , int h);
@@ -45,8 +82,26 @@ private:
   // Add openGL Variables to Scene
   
   // Geometry Variables
-  GLuint vbo_geometry;
+  GLuint program;
+  GLuint yvbo, bvbo;
+  int geometrySize;
   
+  //transform matrices
+	glm::mat4 model;//obj->world each object should have its own model matrix
+	glm::mat4 modelView;
+	glm::mat4 view;//world->eye
+	glm::mat4 projection;//eye->clip
+	glm::mat4 mvp;//premultiplied modelviewprojection
+  
+  //uniform locations
+	GLint loc_mvpmat;// Location of the modelviewprojection matrix in the shader
+	GLint loc_modelviewmat;
+	
+	//attribute locations
+	GLint loc_position;
+	GLint loc_normal;
+	GLint loc_uv;
+	GLint gSampler;
   
   //Bullet Physics Globals
 	btBroadphaseInterface* broadphase;
@@ -55,7 +110,7 @@ private:
 	btSequentialImpulseConstraintSolver* solver;
 	btDiscreteDynamicsWorld* dynamicsWorld;
 	
-	glm::mat4 projection;
+	std::chrono::time_point<std::chrono::high_resolution_clock> t1,t2;
 	int windowWidth, windowHeight;
   // ARRAY OF OBJECTS IN SCENE
 };
