@@ -111,7 +111,7 @@ namespace doodle {
 		float dt = getDT();
         dynamicsWorld->stepSimulation(dt,10);
         
-   		//updateObj(yoda);
+   		updateObj(yoda);
    		
 		glutPostRedisplay();
 	}
@@ -146,6 +146,8 @@ namespace doodle {
 		glDisableVertexAttribArray(loc_position);
 	    glDisableVertexAttribArray(loc_normal);
 		glDisableVertexAttribArray(loc_uv);
+    
+    	printText(-0.15, .8, (char*)"Replay? <y/n>");
     
     	glutSwapBuffers();
 	}
@@ -315,6 +317,35 @@ namespace doodle {
 		ret = std::chrono::duration_cast< std::chrono::duration<float> >(t2-t1).count();
 		t1 = std::chrono::high_resolution_clock::now();
 		return ret;
+	}
+	
+	void DoodleJump::printText(float x, float y, char* text){
+		glUseProgram(0);
+
+		float r,g,b;
+		r = 0.;
+		g = 1.;
+		b = 1.;
+
+		glDisable(GL_TEXTURE_2D);
+		glDisable(GL_LIGHTING);
+
+		bool blending = false;
+
+		if(glIsEnabled(GL_BLEND)) 
+		blending = true;
+
+		glEnable(GL_BLEND);
+		glColor3f(r,g,b);
+		glRasterPos2f(x,y);
+
+		while(*text){
+		    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *text);
+		    text++;
+		}
+
+		if(!blending) 
+		glDisable(GL_BLEND);
 	}
 	
 	void DoodleJump::cleanUp(){

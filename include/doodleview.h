@@ -62,6 +62,7 @@ public:
   virtual bool loadShaders();
   virtual bool loadObj(const char* objpath, const char* text,const char* alttext, Object&);
 	virtual char* loadFromString(const char*);
+	virtual void printText(float x, float y, char* text);
 	virtual float getDT();
 	virtual void cleanUp();
 
