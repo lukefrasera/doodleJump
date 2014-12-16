@@ -1,4 +1,5 @@
 #include "doodleview.h"
+#include <btBulletDynamicsCommon.h>	// Bullet Physics
 
 namespace doodle {
 	DoodleJump::DoodleJump() {}
