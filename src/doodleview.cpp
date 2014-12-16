@@ -6,7 +6,12 @@ namespace doodle {
 	bool DoodleJump::initialize() {}
 	void DoodleJump::update() {}
 	void DoodleJump::render(){}
-	void DoodleJump::resize(int w, int h) {}
+	void DoodleJump::resize(int w, int h) {
+	    windowWidth = w;
+   		windowHeight = h;
+    	glViewport( 0, 0, windowWidth, windowHeight);
+    	projection = glm::perspective(45.0f, float(windowWidth)/float(windowHeight), 0.01f, 100.0f);
+    }
 
 	void DoodleJump::initializeGL() {}
 	void DoodleJump::resizeGL(int w , int h) {}

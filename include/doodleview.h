@@ -2,8 +2,16 @@
 #ifndef DOODLE_JUMP_H_
 #define DOODLE_JUMP_H_
 #include "abstractscene.h"
+#include <GL/glew.h> 
+#include <GL/glut.h>
 #include "btBulletCollisionCommon.h"
-#include "btBulletDynamicsCommon.h"	// Bullet Physics
+#include "btBulletDynamicsCommon.h"
+#define GLM_FORCE_RADIANS
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 namespace doodle {
 
 class DoodleJump : public abstractScene {
@@ -38,6 +46,9 @@ private:
 	btCollisionDispatcher* dispatcher;
 	btSequentialImpulseConstraintSolver* solver;
 	btDiscreteDynamicsWorld* dynamicsWorld;
+	
+	glm::mat4 projection;
+	int windowWidth, windowHeight;
   // ARRAY OF OBJECTS IN SCENE
 };
 }
