@@ -31,7 +31,12 @@ protected:
 
 private:
   // Add openGL Variables to Scene
-  
+  //Bullet Physics Globals
+	btBroadphaseInterface* broadphase;
+	btDefaultCollisionConfiguration* collisionConfiguration;
+	btCollisionDispatcher* dispatcher;
+	btSequentialImpulseConstraintSolver* solver;
+	btDiscreteDynamicsWorld* dynamicsWorld;
   // ARRAY OF OBJECTS IN SCENE
 };
 }
