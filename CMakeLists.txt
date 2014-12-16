@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
-PROJECT(cs674)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/modules)
+PROJECT(cs480)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/modules/)
 
 find_package(GLEW REQUIRED)
 find_package(GLUT REQUIRED)
@@ -9,6 +9,7 @@ find_package(GLUT REQUIRED)
 INCLUDE_DIRECTORIES(
   include/engine
   include/
+  /usr/include/bullet/
   ${GLEW_INCLUDE_DIRS}
   ${GLUT_INCLUDE_DIRS}
 )

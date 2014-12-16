@@ -2,6 +2,7 @@
 #ifndef DOODLE_JUMP_H_
 #define DOODLE_JUMP_H_
 #include "abstractscene.h"
+#include "bullet/btBulletCollisionCommon.h"
 
 namespace doodle {
 
