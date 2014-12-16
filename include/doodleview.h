@@ -2,8 +2,8 @@
 #ifndef DOODLE_JUMP_H_
 #define DOODLE_JUMP_H_
 #include "abstractscene.h"
-#include "bullet/btBulletCollisionCommon.h"
-
+#include "btBulletCollisionCommon.h"
+#include <btBulletDynamicsCommon.h>	// Bullet Physics
 namespace doodle {
 
 class DoodleJump : public abstractScene {
