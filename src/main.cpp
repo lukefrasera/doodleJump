@@ -7,7 +7,7 @@
 abstractScene * mScene;
 
 int main(int argc, char* argv[]){
-	basicGLScene * w = new basicGLScene;
+	doodle::DoodleJump * w = new doodle::DoodleJump;
   w->w=200;
   w->h=200;
   mScene = w;
