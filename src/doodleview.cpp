@@ -1,8 +1,6 @@
 #include "doodleview.h"
 
 namespace doodle {
-
-<<<<<<< HEAD
 	DoodleJump::DoodleJump() {}
 	DoodleJump::~DoodleJump() {}
 
@@ -22,7 +20,6 @@ namespace doodle {
 	void DoodleJump::mouseReleaseEvent() {}
 	void DoodleJump::mouseMoveEvent() {}
 
-
 	void DoodleJump::initPhysics(){
 		//tells bullet how to check for collisions between objects
 		broadphase = new btDbvtBroadphase();
@@ -40,29 +37,5 @@ namespace doodle {
 		dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 
 		dynamicsWorld->setGravity(btVector3(0,-9.81,0));
-
-
 	}
 }
-=======
-DoodleJump::DoodleJump() {}
-DoodleJump::~DoodleJump() {}
-
-bool DoodleJump::initialize() {}
-void DoodleJump::update() {}
-void DoodleJump::render(){}
-void DoodleJump::resize(int w, int h) {}
-
-void DoodleJump::initializeGL() {}
-void DoodleJump::resizeGL(int w , int h) {}
-void DoodleJump::updateGL() {}
-void DoodleJump::drawGL() {}
-
-void DoodleJump::keyPressEvent(unsigned char key, int x, int y) {}
-void DoodleJump::keyReleaseEvent(unsigned char key, int x, int y) {}
-void DoodleJump::mouseClickEvent(int button, int state, int x, int y) {}
-void DoodleJump::mouseReleaseEvent() {}
-void DoodleJump::mouseMoveEvent(int x, int y) {}
-
-}
->>>>>>> 4c767da91912c6c538d08359e029e6874252c709
