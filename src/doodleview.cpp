@@ -9,7 +9,7 @@ namespace doodle {
 	}
 	
 	void DoodleJump::update() {
-		
+		/*hello*/
 		glutPostRedisplay();
 	}
 	
