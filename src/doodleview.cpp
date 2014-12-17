@@ -191,12 +191,12 @@ namespace doodle {
 		}
 
 		// Get Materials (textures)
-		/*bool success;
+		bool success;
 		success = ilLoadImage((const ILstring)filePathTex);
 		if(!success) {
 		    cout << "Error: Unable to load texture " << filePathTex << endl;
 		    return false;
-		}
+		/*}
 		else {
 		    success = ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE);
 		    if(!success) {

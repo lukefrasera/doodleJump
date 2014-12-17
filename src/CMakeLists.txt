@@ -9,5 +9,7 @@ ADD_EXECUTABLE( doodlejump
 
 target_link_libraries( doodlejump ${GLEW_LIBRARIES})
 target_link_libraries( doodlejump ${GLUT_LIBRARY})
-target_link_libraries( doodlejump ${OPENGL_LIBRARIES} ${ASSIMP_LIBRARIES})
-target_link_libraries( doodlejump  /usr/lib/x86_64-linux-gnu/libBulletDynamics.so /usr/lib/x86_64-linux-gnu/libBulletCollision.so /usr/lib/x86_64-linux-gnu/libLinearMath.so)
+target_link_libraries( doodlejump ${OPENGL_LIBRARIES} )
+target_link_libraries( doodlejump ${ASSIMP_LIBRARIES})
+target_link_libraries( doodlejump ${IL_LIBRARIES})
+target_link_libraries( doodlejump  /usr/lib/x86_64-linux-gnu/libBulletDynamics.so /usr/lib/x86_64-linux-gnu/libBulletCollision.so /usr/lib/x86_64-linux-gnu/libLinearMath.so /usr/lib/libassimp.so)
