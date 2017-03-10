@@ -12,6 +12,8 @@ int main(int argc, char* argv[]){
   w->h=600;
   mScene = w;
 	GLApplication app(argc, argv);
+
+  printf("Hello\n");
 	
 	return 0;
 }
