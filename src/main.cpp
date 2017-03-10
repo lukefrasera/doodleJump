@@ -6,7 +6,7 @@
 
 abstractScene * mScene;
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]) {
   doodle::DoodleJump * w = new doodle::DoodleJump;
   w->w = 400;
   w->h = 600;
